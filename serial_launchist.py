@@ -4,7 +4,8 @@ from subprocess import Popen
 from os import listdir, remove, environ
 import time
 
-scale = 25
+start = 1
+stop = 50
 sleep = 20
 
 env = Environment(
@@ -12,11 +13,11 @@ env = Environment(
   trim_blocks=True)
 
 # set API credentials
-environ['RANCHER_URL'] = 'http://130.211.205.37:8080/v1/projects/1a42'
-environ['RANCHER_ACCESS_KEY'] = '6FC9190F002500B49CD5'
-environ['RANCHER_SECRET_KEY'] = 'dn7xjK31nAyXk3Ecdh3h8p8rTSpf3zJfoCtXqRTJ'
+environ['RANCHER_URL'] = 'http://130.211.205.37:8080/v1/projects/1a60'
+environ['RANCHER_ACCESS_KEY'] = '6BCC6BB73BCA366FE406'
+environ['RANCHER_SECRET_KEY'] = 'qbKeWsDDvhFafFY4PZ5gr3jyfh7W8AEkZszGJxqw'
 
-for id in range(0, scale):
+for id in range(start, stop + 1):
   # Render templates
   for filename in listdir('templates'):
     if filename.endswith('.j2'):
@@ -31,3 +32,5 @@ for id in range(0, scale):
   # TODO detect when this app is stabilized
   remove('docker-compose.yml')
   remove('rancher-compose.yml')
+
+# echo fs.inotify.max_user_watches=524298 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
