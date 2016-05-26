@@ -1,0 +1,4 @@
+#!/bin/bash
+
+docker build -t llparse/reaction:0.12.1 .
+docker push llparse/reaction:0.12.1

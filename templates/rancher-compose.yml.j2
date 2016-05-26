@@ -1,0 +1,8 @@
+app:
+  health_check:
+    port: 80
+    interval: 5000
+    unhealthy_threshold: 2
+    healthy_threshold: 2
+    request_line: '/'
+    response_timeout: 5000

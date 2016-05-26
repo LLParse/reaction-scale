@@ -1,0 +1,59 @@
+# reaction commerce app
+app-TNxybofvq86rSJ6uY:
+  environment:
+    MONGO_URL: mongodb://Qrgs8xbBno58gfxWn:nNuZ4D8xkMeMHWRfQPv34uRaDMh3LH@mongo1-TNxybofvq86rSJ6uY:27017,mongo2-TNxybofvq86rSJ6uY:27017/aHNySvvjPCGeafn6y?replicaSet=vyGYrDrddQKufhZTe
+    MONGO_OPLOG_URL: mongodb://Qrgs8xbBno58gfxWn:nNuZ4D8xkMeMHWRfQPv34uRaDMh3LH@mongo1-TNxybofvq86rSJ6uY:27017,mongo2-TNxybofvq86rSJ6uY:27017/local?authSource=aHNySvvjPCGeafn6y
+    ROOT_URL: https://tnxybofvq86rsj6uy.reactioncommerce.com
+    PORT: '80'
+    REACTION_SHOP_NAME: My Cool Shop # sets the shop name
+    REACTION_EMAIL: admin@example.com # sets the default admin email
+    REACTION_AUTH: pass123 # sets the default admin password
+  labels:
+    io.rancher.scheduler.affinity:host_label: host_type=app
+  hostname: app-TNxybofvq86rSJ6uY
+  image: reactioncommerce/reaction:0.12.1
+  links:
+  - mongo1-TNxybofvq86rSJ6uY:mongo1-TNxybofvq86rSJ6uY
+  - mongo2-TNxybofvq86rSJ6uY:mongo2-TNxybofvq86rSJ6uY
+
+# mongo primary
+mongo1-TNxybofvq86rSJ6uY:
+  environment:
+    MONGO_ROLE: primary
+    MONGO_SECONDARY: mongo2-TNxybofvq86rSJ6uY
+    MONGO_ARBITER: mongo3-TNxybofvq86rSJ6uY
+    MONGO_ROOT_USER: dhAHmxbJBvqi3PBoS
+    MONGO_ROOT_PASSWORD: kHgLEKpFo9cHuWM9yqBXRYmdmAopSW
+    MONGO_APP_USER: Qrgs8xbBno58gfxWn
+    MONGO_APP_PASSWORD: nNuZ4D8xkMeMHWRfQPv34uRaDMh3LH
+    REP_SET: vyGYrDrddQKufhZTe
+    MONGO_APP_DATABASE: aHNySvvjPCGeafn6y
+    MONGO_DB_PATH: /data/TNxybofvq86rSJ6uY
+  labels:
+    io.rancher.scheduler.affinity:host_label: host_type=mongo1
+  hostname: mongo1-TNxybofvq86rSJ6uY
+  image: launchdock/mongo-rep-set:3.2.1
+  links:
+  - mongo2-TNxybofvq86rSJ6uY:mongo2-TNxybofvq86rSJ6uY
+  - mongo3-TNxybofvq86rSJ6uY:mongo3-TNxybofvq86rSJ6uY
+
+# mongo secondary
+mongo2-TNxybofvq86rSJ6uY:
+  environment:
+    REP_SET: vyGYrDrddQKufhZTe
+    MONGO_DB_PATH: /data/TNxybofvq86rSJ6uY
+  labels:
+    io.rancher.scheduler.affinity:host_label: host_type=mongo2
+  hostname: mongo2-TNxybofvq86rSJ6uY
+  image: launchdock/mongo-rep-set:3.2.1
+
+# mongo arbiter
+mongo3-TNxybofvq86rSJ6uY:
+  environment:
+    JOURNALING: 'no'
+    REP_SET: vyGYrDrddQKufhZTe
+  labels:
+    io.rancher.scheduler.affinity:host_label: host_type=mongo3
+  hostname: mongo3-TNxybofvq86rSJ6uY
+  image: launchdock/mongo-rep-set:3.2.1
+
