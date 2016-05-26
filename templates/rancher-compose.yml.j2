@@ -1,7 +1,7 @@
 app:
   health_check:
     port: 80
-    interval: 15000
+    interval: 10000
     unhealthy_threshold: 2
     healthy_threshold: 2
     request_line: '/'
@@ -9,24 +9,21 @@ app:
 mongo1:
   health_check:
     port: 27017
-    interval: 15000
+    interval: 10000
     unhealthy_threshold: 2
     healthy_threshold: 2
-    request_line: '/'
     response_timeout: 5000
 mongo2:
   health_check:
     port: 27017
-    interval: 15000
+    interval: 10000
     unhealthy_threshold: 2
     healthy_threshold: 2
-    request_line: '/'
     response_timeout: 5000
 mongo3:
   health_check:
     port: 27017
-    interval: 15000
+    interval: 10000
     unhealthy_threshold: 2
     healthy_threshold: 2
-    request_line: '/'
     response_timeout: 5000
