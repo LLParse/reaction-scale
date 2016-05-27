@@ -13,31 +13,34 @@ import time
 #
 # Put this in a privileged container and run it on host_type='app':
 #
-# echo fs.inotify.max_user_instances=512 | sudo tee -a /etc/sysctl.conf
-# echo fs.inotify.max_user_watches=524298 | sudo tee -a /etc/sysctl.conf
-# sudo sysctl -p
+#echo fs.inotify.max_user_instances=512 | sudo tee -a /etc/sysctl.conf
+#echo fs.inotify.max_user_watches=524298 | sudo tee -a /etc/sysctl.conf
+#sudo sysctl -p
 
 # configuration parameters
-start = 74
-stop = 125
-maxprocs = 3
+start = 171
+stop = 180
+maxprocs = 5
 
 # Rancher API credentials
 environ['RANCHER_URL'] = 'http://130.211.199.188:8080/v1/projects/1a5'
-environ['RANCHER_ACCESS_KEY'] = 'C2F34238E877F768AFBC'
-environ['RANCHER_SECRET_KEY'] = 'KC6A2ymkRogigqRvAADN69nE1x9TNCT7ZABckDKB'
+environ['RANCHER_ACCESS_KEY'] = '6C043054EDDEAD42A3C1'
+environ['RANCHER_SECRET_KEY'] = 'ZUAhevS3x9bq4DdXVMB1XVDYnXAYAfVUf8raUxe2'
 
 # Template environment
 env = Environment(
   loader=FileSystemLoader('templates'),
   trim_blocks=True)
 
-# scheduling frequency step function
+# scheduling step function
 def delay(id):
-  if   id < 50:  return 20
+  if   id < 2:   return 60
+  elif id < 50:  return 20
   elif id < 100: return 25
-  elif id < 200: return 30
-  else:          return 35
+  elif id < 150: return 30
+  elif id < 200: return 40
+  elif id < 250: return 50
+  else:          return 60
 
 for id in range(start, stop + 1):
   procs = []

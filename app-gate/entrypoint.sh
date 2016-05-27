@@ -22,7 +22,7 @@ if [[ "${MONGO_URL}" == *"127.0.0.1"* ]]; then
 
 fi
 
-# Wait for mongo
+# Wait for mongodb
 ip=$(curl rancher-metadata/2015-12-19/self/stack/services/mongo1/containers/0/primary_ip)
 echo Waiting for mongo-1
 while true; do

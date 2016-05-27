@@ -1,0 +1,36 @@
+{
+  "name": "reply.37627260623169756",
+  "transitioningProgress": null,
+  "resourceType": null,
+  "resourceId": null,
+  "id": "2109312f-462b-4927-bd17-c769130e7c4e",
+  "transitioningMessage": "Update failed",
+  "time": 1464323788000,
+  "previousNames": [
+    "delegate.request"
+  ],
+  "transitioning": "yes",
+  "data": {
+    "name": "config.update.reply",
+    "transitioningProgress": null,
+    "resourceType": "agent",
+    "resourceId": "8",
+    "id": "c60d900d-5c5f-4122-8fc0-638677c04d8b",
+    "transitioningMessage": "Update failed",
+    "time": 1464323788000,
+    "previousNames": [
+      "config.update"
+    ],
+    "transitioning": "yes",
+    "data": {
+      "output": "Lock failed",
+      "exitCode": 122
+    },
+    "previousIds": [
+      "0b6ac5e1-cd75-4681-a0e6-44e3f1141f56"
+    ]
+  },
+  "previousIds": [
+    "c01f3b00-e93f-421d-ba2f-71b62f4e58ab"
+  ]
+}
