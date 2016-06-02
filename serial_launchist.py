@@ -69,7 +69,7 @@ for id in range(start, stop + 1):
 
   with open(result_file, 'a') as f:
     samples.append((id, active_time, up_time, cpu_percent, vmem_percent, smem_percent))
-    f.write('{0},{1},{2},{3},{4},{5}'.format(id, active_time, up_time, cpu_percent, vmem_percent, smem_percent))
+    f.write('{0},{1},{2},{3},{4},{5}\n'.format(id, active_time, up_time, cpu_percent, vmem_percent, smem_percent))
 
 for sample in samples:
   print sample
